@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import data from "./data";
-
+import NavBar from "./NavBar/NavBar";
+import { FaCopy } from "react-icons/fa";
 const App = () => {
   const [count, setCount] = useState<number>(0);
   const [text, setText] = useState<string[]>([]);
@@ -24,13 +25,14 @@ const App = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content text-center">
-        <div className="max-w-lg">
-          <h1 className="text-5xl text-secondary font-bold">
-            TIRED OF BORING LOREM IPSUM?
-          </h1>
-          <form onSubmit={handleSubmit} className="flex justify-center py-6">
+    <div className="min-h-screen bg-base-200">
+      <NavBar></NavBar>
+      <div className="p-12">
+        <h1 className="text-5xl text-center text-primary font-bold">
+          TIRED OF BORING LOREM IPSUM?
+        </h1>
+        <div>
+          <form onSubmit={handleSubmit} className="flex justify-center py-4">
             <div className="form-control">
               <input
                 type="number"
@@ -42,16 +44,30 @@ const App = () => {
                 value={count}
                 onChange={handleAmountChange}
               />
-              <button type="submit" className="btn btn-secondary">
+              <button type="submit" className="btn btn-primary">
                 Generate
               </button>
             </div>
           </form>
-          <p className="py-6">
-            {text.map((item, index) => {
-              return <p key={index}>{item}</p>;
-            })}
-          </p>
+        </div>
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+          {text.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="card card-bordered bg-base-100 shadow-xl"
+              >
+                <div className="card-title flex justify-end">
+                  <button className="btn btn-sm btn-primary">
+                    <FaCopy></FaCopy> COPY
+                  </button>
+                </div>
+                <div className="card-body">
+                  <p>{item}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
