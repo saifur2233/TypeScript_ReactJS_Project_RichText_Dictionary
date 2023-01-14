@@ -58,7 +58,10 @@ const App = () => {
                 className="card card-bordered bg-base-100 shadow-xl"
               >
                 <div className="card-title flex justify-end">
-                  <button className="btn btn-sm btn-primary">
+                  <button
+                    onClick={() => navigator.clipboard.writeText(item)}
+                    className="btn btn-sm btn-primary"
+                  >
                     <FaCopy></FaCopy> COPY
                   </button>
                 </div>
